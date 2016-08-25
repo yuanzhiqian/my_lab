@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <body>
 
-<canvas id="myCanvas" width="290" height="290" style="border:1px solid #c3c3c3;">
+<canvas id="myCanvas" width="330" height="330" style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
 
@@ -53,10 +53,10 @@ function p(a, b) {
 }
 
 function draw_bits(obj, x1, y1, x2, y2, arr) {
-    for (var i = x1; i < x2; i++) {
-        for (var j = y1; j < y2; j++) {
+    for (var i = 0; i < x2 - x1; i++) {
+        for (var j = 0; j < y2 - y1; j++) {
             if (arr[i][j] == 1) {
-                fill(obj, j, i);
+                fill(obj, j + x1, i + y1);
             }
         }
     }
@@ -80,7 +80,7 @@ function paintQR(obj) {
 function paintQR_via_bitmap(cxt) {
 var arr = qr1;
 
-draw_bits(cxt, 0, 0, 29, 29, arr);
+draw_bits(cxt, 2, 2, 31, 31, arr);
 }
 
 var c=document.getElementById("myCanvas");
