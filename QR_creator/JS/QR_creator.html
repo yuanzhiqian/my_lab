@@ -1,11 +1,14 @@
 <!DOCTYPE HTML>
 <html>
+<meta charset="UTF-8">
 <body>
 
 <canvas id="myCanvas" width="290" height="290" style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
 
+<script src="qr1.js"></script>
+<script src="qr2.js"></script>
 <script type="text/javascript">
 
 function fill(obj, x, y) {
@@ -75,40 +78,7 @@ function paintQR(obj) {
 }
 
 function paintQR_via_bitmap(cxt) {
-var arr = new Array(); 
-var _ = 0;
-var a = 1;
-var arr = [
-    [a,a,a,a,a,a,a,_,_,_,a,_,_,a,_,a,a,_,_,a,_,_,a,a,a,a,a,a,a],
-    [a,_,_,_,_,_,a,_,a,a,a,_,_,a,_,a,a,_,_,_,a,_,a,_,_,_,_,_,a],
-    [a,_,a,a,a,_,a,_,a,_,_,_,_,_,_,_,a,a,a,_,_,_,a,_,a,a,a,_,a],
-    [a,_,a,a,a,_,a,_,_,a,_,_,a,_,_,a,a,_,a,a,_,_,a,_,a,a,a,_,a],
-    [a,_,a,a,a,_,a,_,a,a,a,_,a,a,_,a,_,_,a,_,_,_,a,_,a,a,a,_,a],
-    [a,_,_,_,_,_,a,_,a,_,a,_,a,_,a,a,a,_,_,a,a,_,a,_,_,_,_,_,a],
-    [a,a,a,a,a,a,a,_,a,_,a,_,a,_,a,_,a,_,a,_,a,_,a,a,a,a,a,a,a],
-    [_,_,_,_,_,_,_,_,a,_,a,a,_,_,a,a,_,a,a,_,_,_,_,_,_,_,_,_,_],
-    [a,a,_,a,_,_,a,a,_,_,_,a,a,a,_,_,a,_,_,_,a,_,a,a,a,_,a,a,_],
-    [a,_,a,a,_,_,_,_,_,a,_,a,a,a,a,a,a,a,a,_,a,_,a,a,_,a,_,_,a],
-    [_,a,a,_,a,a,a,_,a,_,_,a,a,_,a,_,_,_,_,a,_,_,_,_,_,a,a,_,_],
-    [_,a,_,_,_,_,_,a,a,a,a,a,a,a,_,_,_,_,_,a,_,_,_,_,a,a,a,a,a],
-    [_,_,_,a,a,a,a,a,a,_,a,a,_,a,a,a,_,a,_,_,a,_,a,a,_,a,_,_,_],
-    [_,_,_,a,_,a,_,_,_,a,_,a,_,a,a,_,a,_,_,a,a,_,_,a,_,_,_,_,_],
-    [a,a,_,_,a,a,a,a,_,_,a,a,_,a,_,_,a,_,_,_,a,_,_,_,_,a,a,_,a],
-    [_,_,_,_,a,a,_,_,a,a,a,a,_,a,_,a,a,a,a,_,_,a,_,a,_,a,_,_,_],
-    [_,a,a,_,_,_,a,a,a,_,_,_,a,_,a,_,a,a,_,a,_,_,_,a,_,_,_,a,_],
-    [_,a,a,_,_,_,_,_,_,_,a,_,a,a,_,_,_,_,a,_,_,_,a,_,_,a,_,a,_],
-    [a,_,_,a,a,a,a,a,a,_,_,a,a,_,a,_,a,a,a,_,a,_,_,a,_,_,_,a,a],
-    [_,_,_,_,a,_,_,_,_,_,_,_,a,_,a,a,a,a,_,_,_,a,_,a,_,a,_,_,a],
-    [a,_,a,_,_,a,a,a,a,_,_,_,a,a,_,_,_,_,a,a,a,a,a,a,a,_,_,_,a],
-    [_,_,_,_,_,_,_,_,a,a,_,a,_,_,a,_,_,_,_,a,a,_,_,_,a,_,_,_,a],
-    [a,a,a,a,a,a,a,_,a,a,_,_,a,a,a,_,_,_,a,_,a,_,a,_,a,_,a,_,_],
-    [a,_,_,_,_,_,a,_,_,_,a,_,a,a,a,_,_,_,a,a,a,_,_,_,a,a,a,_,_],
-    [a,_,a,a,a,_,a,_,_,a,_,_,_,a,a,a,_,a,a,_,a,a,a,a,a,a,_,a,_],
-    [a,_,a,a,a,_,a,_,a,_,a,_,_,a,a,_,a,a,a,_,_,a,a,_,a,_,_,a,_],
-    [a,_,a,a,a,_,a,_,_,_,a,a,_,a,_,_,_,a,a,a,_,a,_,a,a,_,_,_,a],
-    [a,_,_,_,_,_,a,_,a,_,_,a,_,a,_,a,a,a,a,_,a,a,_,a,a,a,_,a,_],
-    [a,a,a,a,a,a,a,_,a,a,_,_,_,_,a,_,_,_,_,a,a,a,_,_,_,_,_,a,_],
-    ];
+var arr = qr1;
 
 draw_bits(cxt, 0, 0, 29, 29, arr);
 }
