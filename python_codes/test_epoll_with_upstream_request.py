@@ -49,15 +49,18 @@ class Requester(object):
 
         # Connect as client to a selected server
         # on a specified port
-        self.s.connect(("www.wellho.net",80))
+        #self.s.connect(("www.wellho.net",80))
+        self.s.connect(("www.baidu.com",80))
 
         # Protocol exchange - sends and receives
-        self.s.send("GET /robots.txt HTTP/1.0\n\n")
+        #self.s.send("GET /robots.txt HTTP/1.0\n\n")
+        self.s.send("GET / HTTP/1.0\n\n")
 
     def recv(self):
         resp = self.s.recv(1024)
+        #print "recv"
         if resp == "": return "done" 
-        print resp;
+        #print resp;
 
     def close(self):
         # Close the connection when completed
@@ -73,9 +76,10 @@ class EpollServer(object):
         self.sock.listen(1)
         self.sock.setblocking(0)
         self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-        print "Started Epoll Server"
+        #print "Started Epoll Server"
         self.epoll = select.epoll()
         self.epoll.register(self.sock.fileno(), select.EPOLLIN)
+        self.count_hup = 0
 
     def run(self):
         """Executes epoll server operation"""
@@ -99,21 +103,22 @@ class EpollServer(object):
 
                     elif event & select.EPOLLIN:
                         if fileno in upstream_reqs:
-                            print "fileno in upstream_reqs";
+                            #print "fileno in upstream_reqs";
                             if upstream_reqs[fileno][0].recv() == "done":
+                                #print "recv done"
                                 self.epoll.unregister(fileno)
                                 self.epoll.modify(upstream_reqs[fileno][1], select.EPOLLOUT);
                                 #self.epoll.modify(fileno, select.EPOLLOUT)
                             #else: #wait for another buffer
                         else:
-                            print "reading cli requests"
+                            #print "reading cli requests"
                             requests[fileno] += connections[fileno].recv(1024)
                             if EOL1 in requests[fileno] or EOL2 in requests[fileno]:
                                 req = Requester();
-                                print "Requester newed"
+                                #print "Requester newed"
                                 upstream_reqs[req.s.fileno()] = (req, fileno);
                                 self.epoll.register(req.s.fileno(), select.EPOLLIN)
-                                print "epoll register for upstream request"
+                                #print "epoll register for upstream request"
 
                     elif event & select.EPOLLOUT:
                         byteswritten = connections[fileno].send(responses[fileno])
@@ -122,9 +127,14 @@ class EpollServer(object):
                             self.epoll.modify(fileno, 0)
                             connections[fileno].shutdown(socket.SHUT_RDWR)
                     elif event & select.EPOLLHUP:
+                        self.count_hup += 1
+                        #print str(self.count_hup) + " EPOLLHUP got"
                         self.epoll.unregister(fileno)
                         connections[fileno].close()
                         del connections[fileno]
+        except BaseException as err:
+            print "Error detected"
+            print("Error: {0}".format(err))
         finally:
             self.epoll.unregister(self.sock.fileno())
             self.epoll.close()
@@ -137,7 +147,7 @@ if __name__ == '__main__':
     port = given_args.port
     server = EpollServer(host = SERVER_HOST, port = port)
     print "ready to run the server"
-    server.run()
-    print "server is running"
+    while True:
+        server.run()
 
 
