@@ -5,7 +5,8 @@ import select
 import argparse
 import httplib
 
-SERVER_HOST = 'localhost'
+#SERVER_HOST = 'localhost'
+SERVER_HOST = '0.0.0.0'
 
 EOL1= b'\n\n'
 EOL2 = b'\n\r\n'
@@ -143,7 +144,7 @@ class EpollServer(object):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Socket Server Example with Epoll')
-    parser.add_argument('--port', action="store", dest = "port", type = int, required = True)
+    parser.add_argument('--port', action="store", dest = "port", type = int, default = 80)
     given_args = parser.parse_args()
     port = given_args.port
     server = EpollServer(host = SERVER_HOST, port = port)
