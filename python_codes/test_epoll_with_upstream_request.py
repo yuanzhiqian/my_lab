@@ -128,13 +128,14 @@ class EpollServer(object):
                             connections[fileno].shutdown(socket.SHUT_RDWR)
                     elif event & select.EPOLLHUP:
                         self.count_hup += 1
-                        #print str(self.count_hup) + " EPOLLHUP got"
+                        print str(self.count_hup) + " EPOLLHUP got"
                         self.epoll.unregister(fileno)
                         connections[fileno].close()
                         del connections[fileno]
         except BaseException as err:
             print "Error detected"
             print("Error: {0}".format(err))
+            print("connections: {0}".format(len(connections)))
         finally:
             self.epoll.unregister(self.sock.fileno())
             self.epoll.close()
