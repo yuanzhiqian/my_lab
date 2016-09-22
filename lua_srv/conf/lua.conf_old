@@ -1,0 +1,15 @@
+#lua.conf  
+
+server {  
+    listen       80;  
+    server_name  _;  
+
+    location /lua {  
+        default_type 'text/html';  
+        #content_by_lua 'ngx.say("hello world")';  
+        lua_code_cache off; # open the cache in industry env
+        content_by_lua_file conf/lua/test.lua;  
+    }
+}  
+
+
