@@ -7,7 +7,7 @@ local data = ngx.req.get_body_data();
 -- get request uri's args
 local args = ngx.req.get_uri_args();
 
-res = ngx.location.capture({"/sub2"..ngx.var.request_uri, {method=ngx.HTTP_GET}});
+res = ngx.location.capture("/sub2"..ngx.var.request_uri);
 
-ngx.say(body);
+ngx.say(res.body);
 
