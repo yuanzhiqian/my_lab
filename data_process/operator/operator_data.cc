@@ -61,6 +61,17 @@ int main() {
 
   cout << str_sel << endl;
 
+  cout << "=========beatifully separated=========" << endl;
+
+  for (auto country : selected.getMemberNames()) {
+      for (auto oper : selected[country].getMemberNames()) {
+          for (size_t i = 0; i < selected[country][oper].size(); ++i) {
+              //cout << 191919 << endl;
+              cout << selected[country][oper][(int)i].asInt() << endl;
+          }
+      }
+  }
+
   return 0;
 }
 
