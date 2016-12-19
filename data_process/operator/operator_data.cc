@@ -30,7 +30,7 @@ int main() {
     struct OperCodeStrExt &obj = data_arr_ext[i];
     //if (strncmp(obj.status, "Not Operational", strlen("Not Operational")) == 0) 
     if (strncasecmp(obj.status, "Not Operational", strlen("Not Operational")) == 0) 
-      continue;
+      ;//continue;
     root[obj.country][obj.oper].append(obj.code); 
   }
 #endif
