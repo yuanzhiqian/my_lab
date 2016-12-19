@@ -32,7 +32,6 @@ int main() {
     if (strncasecmp(obj.status, "Not Operational", strlen("Not Operational")) == 0) 
       continue;
     root[obj.country][obj.oper].append(obj.code); 
-    i++;
   }
 #endif
 
