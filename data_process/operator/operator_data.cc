@@ -1,5 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <algorithm>
 #include "json/json/json-forwards.h"
 #include "json/json/json.h"
 #include "data.h"
@@ -30,9 +32,8 @@ int main() {
     struct OperCodeStrExt &obj = data_arr_ext[i];
     //if (strncmp(obj.status, "Not Operational", strlen("Not Operational")) == 0) 
     if (strncasecmp(obj.status, "Not Operational", strlen("Not Operational")) == 0) 
-      continue;
+      ;//continue;
     root[obj.country][obj.oper].append(obj.code); 
-    i++;
   }
 #endif
 
@@ -57,11 +58,11 @@ int main() {
 
   cout << str << endl;
   
-  cout << "=========beatifully separated=========" << endl;
+  cout << "=========beautifully separated=========" << endl;
 
   cout << str_sel << endl;
 
-  cout << "=========beatifully separated=========" << endl;
+  cout << "=========beautifully separated=========" << endl;
 
   for (auto country : selected.getMemberNames()) {
       for (auto oper : selected[country].getMemberNames()) {
@@ -70,6 +71,45 @@ int main() {
               cout << selected[country][oper][(int)i].asInt() << endl;
           }
       }
+  }
+
+  cout << "=========beautifully separated=========" << endl;
+
+  ifstream op_old_file("op_old");  
+  ifstream op_new_file("op_new");  
+
+  vector<int> op_old_vec;
+  vector<int> op_new_vec;
+ 
+  int temp_int;
+
+  while (op_old_file >> temp_int)
+    op_old_vec.push_back(temp_int);
+
+  while (op_new_file >> temp_int)
+    op_new_vec.push_back(temp_int);
+
+  sort(op_old_vec.begin(), op_old_vec.end());
+  sort(op_new_vec.begin(), op_new_vec.end());
+
+  vector<int> op_diff_vec;
+
+  set_difference(op_new_vec.begin(), op_new_vec.end(), op_old_vec.begin(), op_old_vec.end(), back_inserter(op_diff_vec));
+
+  Json::Value root_diff;
+
+  for (size_t i = 0; i < array_size_ext; ++i) {
+    struct OperCodeStrExt &obj = data_arr_ext[i];
+    if (find(op_diff_vec.begin(), op_diff_vec.end(), obj.code) == op_diff_vec.end())
+      continue;
+    root_diff[obj.country][obj.oper].append(obj.code); 
+  }
+
+  string str_diff = writer.write(root_diff);   
+  cout << str_diff << endl;
+
+  for (size_t i = 0; i < op_diff_vec.size(); ++i) {
+    cout << op_diff_vec[i] << endl;
   }
 
   return 0;
