@@ -9,7 +9,7 @@ import os
 from ipip import IP
 from ipip import IPX
 
-ip_file = open("pv20161221_ip")
+ip_file = open("ip_data")
 
 ip_arr = []
 for line in ip_file:
