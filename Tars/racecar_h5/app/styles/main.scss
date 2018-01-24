@@ -1,0 +1,129 @@
+$border: 1px solid lightGrey;
+$bg-color: #eeeeee;
+$primary-color: #009cfb;
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html, body, ul, ol, img, p, input, button, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-size-adjust: 100%;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  word-wrap: break-word;
+  font-family: -apple-system-font, "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+  -webkit-user-drag: none;
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  padding: 10px;
+  border-bottom: $border;
+  section.icon {
+    position: relative;
+    float: left;
+    img {
+      display: block;
+      width: 48px;
+      height: 48px;
+    }
+  }
+  section.info {
+    margin-left: 60px;
+    h1.name {
+      color: #333;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    p.size, p.version {
+      color: #666;
+      font-size: .85rem;
+    }
+  }
+}
+
+section.content {
+  border-bottom: 44px transparent solid;
+}
+
+section.detail {
+  padding: 10px;
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  p, ul {
+    font-size: .85rem;
+    color: #666;
+    line-height: 1.5;
+  }
+  ul>li:before {
+    content:'\2022';
+    margin-right:0.5em;
+    font-size: .5rem;
+  }
+}
+
+
+section.swipe {
+  background-color: $bg-color;
+  border-bottom: $border;
+
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 15px;
+
+  >img {
+//    background-size: cover;
+//    background-repeat: no-repeat;
+//    background-position: top center;
+    vertical-align: top;
+    display: inline-block;
+    width: 132px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+
+    &:not(:first-child) {
+      margin-left: 4px;
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  background-color: $bg-color;
+  border-top: $border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a.download {
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    padding: 4px 20px;
+    background-color: $primary-color;
+    &:active {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}

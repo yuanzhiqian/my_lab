@@ -1,0 +1,108 @@
+::-webkit-scrollbar {
+  display: none; }
+
+html, body, ul, ol, img, p, input, button, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0; }
+
+body {
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  word-wrap: break-word;
+  font-family: -apple-system-font, "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+  -webkit-user-drag: none;
+  background-color: white; }
+
+a {
+  text-decoration: none; }
+
+header {
+  padding: 10px;
+  border-bottom: 1px solid lightGrey; }
+  header section.icon {
+    position: relative;
+    float: left; }
+    header section.icon img {
+      display: block;
+      width: 48px;
+      height: 48px; }
+  header section.info {
+    margin-left: 60px; }
+    header section.info h1.name {
+      color: #333;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      font-weight: 600; }
+    header section.info p.size, header section.info p.version {
+      color: #666;
+      font-size: .85rem; }
+
+section.content {
+  border-bottom: 44px transparent solid; }
+
+section.detail {
+  padding: 10px; }
+  section.detail h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px; }
+  section.detail p, section.detail ul {
+    font-size: .85rem;
+    color: #666;
+    line-height: 1.5; }
+  section.detail ul > li:before {
+    content: '\2022';
+    margin-right: 0.5em;
+    font-size: .5rem; }
+
+section.swipe {
+  background-color: #eeeeee;
+  border-bottom: 1px solid lightGrey;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 15px; }
+  section.swipe > img {
+    vertical-align: top;
+    display: inline-block;
+    width: 132px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
+    section.swipe > img:not(:first-child) {
+      margin-left: 4px; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  background-color: #eeeeee;
+  border-top: 1px solid lightGrey;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  footer a.download {
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    padding: 4px 20px;
+    background-color: #009cfb; }
+    footer a.download:active {
+      background-color: #007cc8; }

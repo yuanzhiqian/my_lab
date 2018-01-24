@@ -1,0 +1,9 @@
+.sass-cache
+*.css.map
+.tmp
+node_modules
+*.swp
+*.swo
+npm-debug.log
+mon_stat.log
+nohup.out
