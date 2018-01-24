@@ -1,0 +1,2 @@
+================= Change CRLF into LF =================
+awk -F '[\r\n]' '{print $1}' cooee_district_encode | cat>shishu_data
